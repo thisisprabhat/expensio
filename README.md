@@ -1,16 +1,65 @@
 # expensio
 
-A new Flutter project.
+An Expense Tracker app, Expensio built using flutter with firebase and hive db.
+- User can login to the app
+- User can switch between local db and firebase cloud db
+- User can switch between darkMode and lightMode
 
-## Getting Started
+## Download apk
+https://drive.google.com/file/d/1AvNXObJ4IBxnIrq4MwQNet7pdm97_hfy/view?usp=sharing
 
-This project is a starting point for a Flutter application.
+## ScreenShots
+<img src="readme_res/home_light.jpg" alt="image" width="200" >
+<img src="readme_res/home_dark.jpg" alt="image" width="200" >
+<img src="readme_res/add.jpg" alt="image" width="200" >
+<img src="readme_res/details.jpg" alt="image" width="200" >
+<img src="readme_res/onboarding.jpg" alt="image" width="200" >
+<img src="readme_res/login.jpg" alt="image" width="200" >
+<img src="readme_res/search.jpg" alt="image" width="200" >
+<img src="readme_res/drawer.jpg" alt="image" width="200" >
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Project Structure
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+lib
+├───core
+│   ├───constants
+│   ├───config
+│   └───utils
+├───data
+│   ├───models
+│   └───repositories
+│       ├───local
+│       │   ├───config_repo
+│       │   └───expenses_repo
+│       ├───remote
+│       │   ├───auth_repository
+│       │   ├───user_repository
+│       │   └───expenses_repo
+│       └───common_interfaces
+├───domain
+│   ├───bloc
+│   │   ├───auth_bloc
+│   │   ├───config_bloc
+│   │   └───expenses_bloc
+│   └───exceptions
+└───presentation
+    ├───screens
+    │   ├───authentication
+    │   │   └───components
+    │   ├───search
+    │   ├───splash
+    │   ├───homescreen
+    │   │   └───components
+    │   ├───onboarding
+    │   ├───add_expense
+    │   │   └───components
+    │   └───view_expenses
+    └───widgets
+
+```
+
+## Pending Features
+- Update expense
+- Delete expense
