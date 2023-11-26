@@ -73,4 +73,28 @@ class InputValidator {
       return null;
     }
   }
+
+  static String? expensesTitle(String? value) {
+    if (value != null) {
+      if (value.isEmpty) {
+        return 'Mention the item you spent on';
+      } else if (value.length < 3) {
+        return 'Mention a valid item';
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  static String? amountSpent(String? value) {
+    if (value != null) {
+      if (value.isEmpty) {
+        return 'Enter the amount of money you spent';
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
 }

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import '/core/constants/styles.dart';
 
 class AppTheme {
-  static ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData.dark(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-        .copyWith(brightness: Brightness.dark),
+  ).copyWith(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: borderRadiusDefault),
@@ -14,12 +13,14 @@ class AppTheme {
         foregroundColor: Colors.white,
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(color: Colors.grey),
+    ),
   );
 
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData lightTheme = ThemeData.light(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-        .copyWith(brightness: Brightness.light),
+  ).copyWith(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: borderRadiusDefault),
@@ -27,6 +28,9 @@ class AppTheme {
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(color: Colors.grey),
     ),
   );
 }

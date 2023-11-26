@@ -1,5 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '/domain/exceptions/app_exception.dart';
 
@@ -39,4 +41,30 @@ Future<Position> determinePosition() async {
   }
 
   return position;
+}
+
+Future<String> reverseGeocode(double latitude, double longitude) async {
+  if (latitude == 0.0 && longitude == 0.0) {
+    return 'N/A';
+  }
+  final String apiUrl =
+      'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude';
+
+  try {
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+
+      if (data.containsKey('display_name')) {
+        return data['display_name'];
+      } else {
+        throw LocationNotFound();
+      }
+    } else {
+      throw AppException(message: '${response.statusCode}');
+    }
+  } catch (e) {
+    throw AppException(message: e.toString());
+  }
 }
