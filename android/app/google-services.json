@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434033430428",
+    "project_id": "expensio-a9d0e",
+    "storage_bucket": "expensio-a9d0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434033430428:android:0d4dc4a8c0e6a266694259",
+        "android_client_info": {
+          "package_name": "com.example.expensio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBadlw3Pfca4nq0t-0jpO4dmQ2ZdIrA_WM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
