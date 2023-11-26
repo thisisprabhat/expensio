@@ -43,6 +43,8 @@ class FirebaseExpensesRepository implements ExpensesRepository {
       for (var doc in querySnapshot.docs) {
         listOfExpenses
             .add(Expenses.fromMap(doc.data() as Map<String, dynamic>));
+        ColoredLog.yellow(Expenses.fromMap(doc.data() as Map<String, dynamic>),
+            name: 'Firebase Expense');
       }
       if (listOfExpenses.isEmpty) {
         throw NotFoundException('No Expenses found');
@@ -64,13 +66,15 @@ class FirebaseExpensesRepository implements ExpensesRepository {
       for (var doc in querySnapshot.docs) {
         listOfExpenses
             .add(Expenses.fromMap(doc.data() as Map<String, dynamic>));
+        ColoredLog.yellow(Expenses.fromMap(doc.data() as Map<String, dynamic>),
+            name: 'Firebase Expense');
       }
       if (listOfExpenses.isEmpty) {
         throw NotFoundException('No Expenses found');
       }
       return listOfExpenses;
     } catch (e) {
-      ColoredLog.red(e, name: 'fetchCategoryExpenses Error');
+      ColoredLog.red(e, name: 'getAllExpenses Error');
       AppExceptionHandler.handleFirebaseException(e);
     }
     return listOfExpenses;

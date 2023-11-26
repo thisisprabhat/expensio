@@ -12,7 +12,6 @@ class FirebaseAuthRepository implements AuthRepository {
   @override
   User get loggedFirebaseUser => _firebaseAuth.currentUser!;
 
-  /// Creates a new user with the provided [information]
   @override
   Future<void> signUp(UserModel newUser) async {
     try {

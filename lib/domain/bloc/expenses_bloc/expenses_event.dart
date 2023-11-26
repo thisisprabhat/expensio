@@ -5,7 +5,7 @@ abstract class ExpensesEvent {}
 class ExpensesLoadEvent extends ExpensesEvent {}
 
 class ExpensesLoadCategoryEvent extends ExpensesEvent {
-  final ExpenseCategory category;
+  final ExpenseCategory? category;
 
   ExpensesLoadCategoryEvent(this.category);
 }

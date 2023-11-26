@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                 constraints: const BoxConstraints(minWidth: double.maxFinite),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) => const Login()));
                   },
                   child: const Text("Get Started"),

@@ -23,6 +23,8 @@ dependencies:
   fluttertoast: ^8.2.4
   uuid: ^4.2.1
   lottie: ^2.7.0
+  http: ^1.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +39,7 @@ flutter:
 
   assets:
     - assets/animations/
-  #   - images/a_dot_ham.jpeg
+    - assets/images/
 
   # fonts:
   #   - family: Schyler

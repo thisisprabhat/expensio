@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '/domain/exceptions/app_exception.dart';
@@ -12,7 +11,7 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Future<void> addUserData(UserModel newUser) async {
     await _userCollection
-        .doc(newUser.email)
+        .doc(newUser.uId)
         .set(newUser.toMap())
         .catchError(AppExceptionHandler.handleFirebaseException);
   }
@@ -21,7 +20,7 @@ class FirebaseUserRepository implements UserRepository {
   Future<UserModel> getUserById() async {
     final auth = FirebaseAuth.instance.currentUser;
     return await _userCollection
-        .doc(auth?.email)
+        .doc(auth?.uid)
         .get()
         .then((doc) => UserModel.fromMap(doc.data()!))
         .catchError(AppExceptionHandler.handleFirebaseException);

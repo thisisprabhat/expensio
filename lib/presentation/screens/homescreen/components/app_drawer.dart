@@ -75,9 +75,6 @@ class AppDrawer extends StatelessWidget {
                           trailing: Switch(
                             value: state.database == DatabaseType.local,
                             onChanged: (val) {
-                              context
-                                  .read<ExpensesBloc>()
-                                  .add(ExpensesLoadEvent());
                               context.read<ConfigBloc>().add(
                                     ConfigThemeModeChangeEvent(
                                       database: val
@@ -85,6 +82,9 @@ class AppDrawer extends StatelessWidget {
                                           : DatabaseType.remote,
                                     ),
                                   );
+                              context
+                                  .read<ExpensesBloc>()
+                                  .add(ExpensesLoadEvent());
                             },
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:expensio/presentation/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,10 +37,11 @@ class _SignupState extends State<Signup> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthStateCreatingUserSuccess) {
+            Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+                builder: (context) => const SplashScreen(),
               ),
             );
           }

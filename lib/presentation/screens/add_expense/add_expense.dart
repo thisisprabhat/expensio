@@ -143,11 +143,11 @@ class _AddExpensePageState extends State<AddExpensePage> {
         context.read<ExpensesBloc>().add(ExpensesAddEvent(expense));
         context.read<ExpensesBloc>().add(ExpensesLoadEvent());
         ColoredLog.yellow(expense, name: 'Expense');
+        Navigator.pop(context);
       }
     } catch (e) {
       ColoredLog.red(e, name: 'Add expenses Error');
     }
-    Navigator.pop(context);
   }
 
   _getPosition() async {

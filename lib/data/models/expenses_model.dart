@@ -75,9 +75,7 @@ class Expenses {
       title: map['title'] != null ? map['title'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
-      amountSpent: map['amountSpent'] != null
-          ? double.tryParse(map['amountSpent']) ?? 0.0
-          : null,
+      amountSpent: map['amountSpent'],
       platformName:
           map['platformName'] != null ? map['platformName'] as String : null,
       createdOn: map['createdOn'] != null

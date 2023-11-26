@@ -22,18 +22,21 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
     ColoredLog.yellow('ConfigInitialThemeEvent');
     themeMode = await _repo.getThemeMode();
     databaseType = await _repo.getDataBaseType();
+    AppRepository.dbType = databaseType;
     ColoredLog.green(themeMode, name: 'Get ThemeMode form local DB');
     emit(ConfigLoadedState(themeMode: themeMode, database: databaseType));
   }
 
   _configChangeEvent(
       ConfigThemeModeChangeEvent event, Emitter<ConfigState> emit) async {
+    if (event.database != null) {
+      databaseType = event.database!;
+      AppRepository.dbType = event.database!;
+    }
     if (event.themeMode != null) {
       themeMode = event.themeMode!;
     }
-    if (event.database != null) {
-      databaseType = event.database!;
-    }
+
     emit(ConfigLoadedState(themeMode: themeMode, database: databaseType));
     await _repo.setDatabaseType(databaseType);
     await _repo.setThemeMode(themeMode);
