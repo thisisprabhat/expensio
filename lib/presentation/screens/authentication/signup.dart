@@ -1,11 +1,10 @@
-import 'package:expensio/presentation/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/data/models/user_model.dart';
 import '/domain/bloc/auth_bloc/auth_bloc.dart';
-import '/presentation/screens/homescreen/homescreen.dart';
 import '/core/utils/input_validation.dart';
+import '/presentation/screens/splash/splash.dart';
 import '/presentation/widgets/loader.dart';
 
 part 'components/signup_text_fields.dart';

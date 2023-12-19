@@ -35,7 +35,7 @@ class ViewExpensePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          Center(child: Text(expense.category.toString().toUpperCase() ?? '')),
+          Center(child: Text(expense.category.toString().toUpperCase())),
           const SizedBox(height: 50),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,

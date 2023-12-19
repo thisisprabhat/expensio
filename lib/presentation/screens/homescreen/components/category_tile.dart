@@ -1,10 +1,10 @@
 import 'package:flutter/Material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../view_expenses/view_expenses_list.dart';
 import '/core/constants/styles.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
+import '../../view_expenses/view_expenses_list.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
@@ -16,10 +16,9 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final moneySpentOnThisCategory = context
-        .watch<ExpensesBloc>()
-        .categorySum(ExpenseCategory.values[index]);
-    final moneySpentOnAll = context.watch<ExpensesBloc>().allExpensesSum;
+    final moneySpentOnThisCategory =
+        context.read<ExpensesBloc>().categorySum(ExpenseCategory.values[index]);
+    final moneySpentOnAll = context.read<ExpensesBloc>().allExpensesSum;
     final category = ExpenseCategory.values[index];
     return InkWell(
       borderRadius: borderRadiusDefault,
@@ -75,7 +74,9 @@ class CategoryTile extends StatelessWidget {
               borderRadius: borderRadiusDefault,
               backgroundColor: _color.withOpacity(0.4),
               color: _color,
-              value: moneySpentOnThisCategory / moneySpentOnAll,
+              value: (moneySpentOnThisCategory / moneySpentOnAll).isNaN
+                  ? 0.01
+                  : moneySpentOnThisCategory / moneySpentOnAll,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

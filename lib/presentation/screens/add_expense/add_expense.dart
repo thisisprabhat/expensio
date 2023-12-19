@@ -37,7 +37,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add an Expense"),
@@ -153,8 +152,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
   _getPosition() async {
     try {
       final position = await determinePosition();
-      locationName = await reverseGeocode(
-          position?.latitude ?? 0.0, position?.longitude ?? 0.0);
+      locationName =
+          await reverseGeocode(position.latitude, position.longitude);
     } on AppException catch (e) {
       e.print;
     }

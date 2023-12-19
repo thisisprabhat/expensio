@@ -1,9 +1,9 @@
 import 'package:flutter/Material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../homescreen/components/expense_tile.dart';
 import '/core/constants/styles.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
+import '/presentation/screens/homescreen/components/expense_tile.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -13,6 +13,12 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExpensesBloc>().add(ExpensesSearchEvent(''));
+  }
+
   final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {

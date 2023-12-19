@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/domain/exceptions/app_exception.dart';
@@ -38,7 +38,6 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
   }
 
   int itemsLength(ExpenseCategory? category) {
-    int val = 0;
     if (category == null) {
       return listOfExpenses.length;
     } else {
@@ -64,8 +63,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     ColoredLog.cyan('loadExpensesEvent initiated', name: "Event Triggered");
     listOfExpenses.clear();
     try {
-      final List<Expenses> expenses = await repo.getAllExpenses();
-      listOfExpenses.addAll(expenses);
+      listOfExpenses = await repo.getAllExpenses();
       emit(ExpensesLoadedState(listOfExpenses));
     } on AppException catch (e) {
       e.print;
