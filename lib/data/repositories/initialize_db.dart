@@ -1,8 +1,8 @@
-import 'package:expensio/data/models/expenses_model.dart';
-import 'package:expensio/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '/data/repositories/local/config_repo/hive_config_repo.dart';
 
+import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
+import '/data/repositories/local/config_repo/hive_config_repo.dart';
+import '/data/models/expenses_model.dart';
 import '/core/utils/colored_log.dart';
 
 class InitializeDb {

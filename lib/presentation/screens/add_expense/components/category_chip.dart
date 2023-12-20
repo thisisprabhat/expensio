@@ -1,6 +1,6 @@
-import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import 'package:flutter/Material.dart';
 
+import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/core/constants/styles.dart';
 
 class CategoryChip extends StatelessWidget {
@@ -28,9 +28,9 @@ class CategoryChip extends StatelessWidget {
             borderRadius: borderRadiusDefault,
             boxShadow: [
               BoxShadow(
-                offset: const Offset(2, 3),
+                offset: const Offset(0, 1),
                 blurRadius: 5,
-                color: colorScheme.primaryContainer.withOpacity(0.4),
+                color: Colors.grey.withOpacity(0.2),
               )
             ]),
         margin: const EdgeInsets.all(

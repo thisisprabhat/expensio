@@ -1,5 +1,4 @@
-import 'package:expensio/core/utils/colored_log.dart';
-
+import '/core/utils/colored_log.dart';
 import '/data/repositories/local/config_repo/hive_config_repo.dart';
 import '/data/repositories/local/expenses_repo/hive_expenses_repo.dart';
 import '/data/repositories/remote/expenses_repo/firebase_expenses_repo.dart';

@@ -1,9 +1,9 @@
-import 'package:expensio/domain/bloc/config_bloc/config_bloc.dart';
-import 'package:expensio/domain/bloc/expenses_bloc/expenses_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
+import '/domain/bloc/config_bloc/config_bloc.dart';
 import '/domain/bloc/auth_bloc/auth_bloc.dart';
 import '/presentation/screens/splash/splash.dart';
 import '/data/repositories/initialize_db.dart';

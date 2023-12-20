@@ -13,7 +13,10 @@ abstract class ExpensesRepository {
   static const expensesCollection = 'expenses';
 
   ///It fetches all the expenses available in db
-  Future<List<Expenses>> getAllExpenses();
+  Future<List<Expenses>> getCurrentMonthExpenses();
+
+  ///It fetches all the expenses available in db
+  Future<List<Expenses>> getMonthlyExpenses(int year, int month);
 
   /// It adds an expense record to a db
   Future<void> addExpense(Expenses expense);

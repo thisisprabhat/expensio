@@ -63,7 +63,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     ColoredLog.cyan('loadExpensesEvent initiated', name: "Event Triggered");
     listOfExpenses.clear();
     try {
-      listOfExpenses = await repo.getAllExpenses();
+      listOfExpenses = await repo.getCurrentMonthExpenses();
       emit(ExpensesLoadedState(listOfExpenses));
     } on AppException catch (e) {
       e.print;
@@ -79,6 +79,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     ColoredLog.cyan('addExpenseEvent initiated', name: "Event Triggered");
     try {
       await repo.addExpense(event.expense);
+      add(ExpensesLoadEvent());
     } on AppException catch (e) {
       e.print;
     } catch (e) {
@@ -121,7 +122,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     try {
       List<Expenses> expenses = [];
       if (event.category == null) {
-        expenses = await repo.getAllExpenses();
+        expenses = await repo.getCurrentMonthExpenses();
       } else {
         expenses = await repo.fetchCategoryExpenses(event.category!);
       }

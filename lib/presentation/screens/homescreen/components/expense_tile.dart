@@ -1,9 +1,9 @@
-import 'package:expensio/presentation/screens/view_expenses/view_expense_page.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
 
 import '/core/constants/styles.dart';
 import '/data/models/expenses_model.dart';
+import '/presentation/screens/view_expenses/view_expense_page.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 
 class ExpenseTile extends StatelessWidget {

@@ -91,6 +91,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                       hintText: 'Enter the expenditure platform name',
                     ),
                   ),
+                  const SizedBox(height: paddingDefault / 2),
                   Wrap(
                     children: [
                       ...List.generate(
@@ -140,7 +141,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
           ..id = const Uuid().v4();
 
         context.read<ExpensesBloc>().add(ExpensesAddEvent(expense));
-        context.read<ExpensesBloc>().add(ExpensesLoadEvent());
         ColoredLog.yellow(expense, name: 'Expense');
         Navigator.pop(context);
       }

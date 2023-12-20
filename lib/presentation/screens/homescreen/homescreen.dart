@@ -1,16 +1,16 @@
-import 'package:expensio/presentation/screens/search/search_page.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/presentation/screens/add_expense/add_expense.dart';
 import '/core/constants/styles.dart';
-import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
+import '/presentation/screens/add_expense/add_expense.dart';
+import '/presentation/screens/search/search_page.dart';
+import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/presentation/screens/homescreen/components/expense_tile.dart';
 import '/presentation/screens/homescreen/components/category_tile.dart';
+import '/presentation/screens/homescreen/components/app_drawer.dart';
 import '/presentation/widgets/error_widget.dart';
 import '/presentation/widgets/loader.dart';
-import '/presentation/screens/homescreen/components/app_drawer.dart';
 import '../view_expenses/view_expenses_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -106,7 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 500, maxWidth: 300),
+                  constraints:
+                      const BoxConstraints(maxHeight: 500, maxWidth: 300),
                   child: GridView.count(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ExpenseCategory.values.length,
                       (index) => ConstrainedBox(
                         constraints:
-                            BoxConstraints(maxHeight: 150, maxWidth: 300),
+                            const BoxConstraints(maxHeight: 150, maxWidth: 300),
                         child: CategoryTile(index),
                       ),
                     ),
@@ -131,15 +132,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     ),
                     TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ViewExpenses(),
-                            ),
-                          );
-                        },
-                        child: const Text('more'))
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ViewExpenses(),
+                          ),
+                        );
+                      },
+                      child: const Text('more'),
+                    )
                   ],
                 ),
                 BlocBuilder<ExpensesBloc, ExpensesState>(

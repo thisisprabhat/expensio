@@ -47,27 +47,27 @@ class AppExceptionHandler {
   ///429. TooManyRequestException(),
   ///500. InternalServerException(),
   ///503. ServiceUnavailableException(),
-  static _statusCodeException(int? statusCode) {
-    switch (statusCode) {
-      case 400:
-        throw BadRequestException();
-      case 401:
-        throw UnAuthorizedException();
-      case 403:
-        throw ForbiddenException();
-      case 404:
-        throw NotFoundException();
-      case 429:
-        throw TooManyRequestException();
-      case 500:
-        throw InternalServerException();
-      case 503:
-        throw ServiceUnavailableException();
-      default:
-        throw AppException(
-          exceptionType: 'Dio Exception',
-          message: "something went wrong",
-        );
-    }
-  }
+  // static _statusCodeException(int? statusCode) {
+  //   switch (statusCode) {
+  //     case 400:
+  //       throw BadRequestException();
+  //     case 401:
+  //       throw UnAuthorizedException();
+  //     case 403:
+  //       throw ForbiddenException();
+  //     case 404:
+  //       throw NotFoundException();
+  //     case 429:
+  //       throw TooManyRequestException();
+  //     case 500:
+  //       throw InternalServerException();
+  //     case 503:
+  //       throw ServiceUnavailableException();
+  //     default:
+  //       throw AppException(
+  //         exceptionType: 'Dio Exception',
+  //         message: "something went wrong",
+  //       );
+  //   }
+  // }
 }

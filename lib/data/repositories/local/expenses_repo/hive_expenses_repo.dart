@@ -56,11 +56,15 @@ class HiveExpensesRepository implements ExpensesRepository {
   }
 
   @override
-  Future<List<Expenses>> getAllExpenses() async {
+  Future<List<Expenses>> getCurrentMonthExpenses() async {
+    DateTime currentMonth = DateTime.now().subtract(const Duration(days: 30));
+
     List<Expenses> expensesList = [];
     try {
       var box = Hive.box<Expenses>(ExpensesRepository.expensesCollection);
-      expensesList = box.values.toList();
+      expensesList = box.values.toList().where((element) {
+        return element.createdOn?.isAfter(currentMonth) ?? false;
+      }).toList();
 
       ColoredLog.green('Length ${expensesList.length}',
           name: 'Getting Expense List');
@@ -74,4 +78,35 @@ class HiveExpensesRepository implements ExpensesRepository {
           exceptionType: "Fetch allExpenses", message: e.toString());
     }
   }
+
+  @override
+  Future<List<Expenses>> getMonthlyExpenses(int year, int month) async {
+    List<Expenses> expensesList = [];
+    try {
+      var box = Hive.box<Expenses>(ExpensesRepository.expensesCollection);
+      expensesList = box.values
+          .toList()
+          .where((element) =>
+              element.createdOn?.year == year &&
+              element.createdOn?.month == month)
+          .toList();
+
+      ColoredLog.green('Length ${expensesList.length}',
+          name: 'Getting Expense List');
+      if (expensesList.isEmpty) {
+        throw NotFoundException('No Expenses found');
+      }
+      return expensesList;
+    } catch (e) {
+      ColoredLog(e, name: 'Fetch allExpenses Error');
+      throw AppException(
+          exceptionType: "Fetch allExpenses", message: e.toString());
+    }
+  }
+
+  ///Singleton
+  factory HiveExpensesRepository() => _instance;
+  static final HiveExpensesRepository _instance =
+      HiveExpensesRepository._internal();
+  HiveExpensesRepository._internal();
 }
