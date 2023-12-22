@@ -1,4 +1,4 @@
-import 'package:flutter/Material.dart';
+import 'package:flutter/material.dart';
 
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/core/constants/styles.dart';
