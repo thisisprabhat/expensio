@@ -33,6 +33,16 @@ class FirebaseExpensesRepository implements ExpensesRepository {
   }
 
   @override
+  Future<void> editExpenses(
+      {required Expenses oldExpense, required Expenses newExpense}) async {
+    await _expensesCollection
+        .doc(newExpense.id)
+        .set(newExpense.toMap(), SetOptions(merge: true))
+        .then((doc) => Fluttertoast.showToast(msg: 'Data updated successfully'))
+        .catchError(AppExceptionHandler.handleFirebaseException);
+  }
+
+  @override
   Future<List<Expenses>> fetchCategoryExpenses(ExpenseCategory category) async {
     List<Expenses> listOfExpenses = [];
     try {

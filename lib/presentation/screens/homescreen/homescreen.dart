@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => const AddExpensePage(),
+              builder: (_) => const AddOrEditExpensePage(),
               fullscreenDialog: true,
               barrierDismissible: true,
             ),

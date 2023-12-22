@@ -61,5 +61,5 @@ lib
 ```
 
 ## Pending Features
-- Update expense
-- Delete expense
+- View monthly data
+- Add upload monthly image

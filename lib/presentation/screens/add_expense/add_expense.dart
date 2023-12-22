@@ -13,21 +13,28 @@ import '/domain/exceptions/app_exception.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/presentation/screens/add_expense/components/category_chip.dart';
 
-class AddExpensePage extends StatefulWidget {
-  const AddExpensePage({super.key});
+///### Screen for adding or editting an expense
+/// - If no parameter is passed to the constructor, it will be in add mode
+/// - If an expense is passed to the constructor and editMode==true then only it will be in edit mode
+class AddOrEditExpensePage extends StatefulWidget {
+  const AddOrEditExpensePage({super.key, this.editMode = false, this.expense});
+  final Expenses? expense;
+  final bool editMode;
 
   @override
-  State<AddExpensePage> createState() => _AddExpensePageState();
+  State<AddOrEditExpensePage> createState() => _AddOrEditExpensePageState();
 }
 
-class _AddExpensePageState extends State<AddExpensePage> {
+class _AddOrEditExpensePageState extends State<AddOrEditExpensePage> {
   @override
   void initState() {
     super.initState();
-    _getPosition();
+    // if edit mode is true then initialize the text controllers with the expense values
+    widget.editMode ? _initEditMode() : _getPosition();
   }
 
   ExpenseCategory selectedCategory = ExpenseCategory.others;
+  Expenses editExpense = Expenses();
   String? locationName;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _amountSpentController = TextEditingController();
@@ -39,7 +46,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add an Expense"),
+        title: Text(widget.editMode ? 'Update Expense' : 'Add an Expense'),
       ),
       body: Column(
         children: [
@@ -117,8 +124,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.maxFinite),
               child: ElevatedButton(
-                onPressed: _addExpense,
-                child: const Text('Add Expense'),
+                onPressed: widget.editMode ? _updateExpense : _addExpense,
+                child: Text(widget.editMode ? 'Update Expense' : 'Add Expense'),
               ),
             ),
           )
@@ -135,7 +142,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
           ..amountSpent = double.tryParse(_amountSpentController.text.trim())
           ..description = _descriptionController.text.trim()
           ..platformName = _platformController.text.trim()
-          ..location = locationName ?? 'N/A'
+          ..location = locationName ?? ''
           ..category = selectedCategory.name
           ..createdOn = DateTime.now()
           ..id = const Uuid().v4();
@@ -154,8 +161,49 @@ class _AddExpensePageState extends State<AddExpensePage> {
       final position = await determinePosition();
       locationName =
           await reverseGeocode(position.latitude, position.longitude);
+      ColoredLog(position, name: 'Position');
+      ColoredLog(locationName, name: 'Location Name');
     } on AppException catch (e) {
       e.print;
+    }
+  }
+
+  _initEditMode() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() {
+      _titleController.text = widget.expense!.title!;
+      _amountSpentController.text = widget.expense!.amountSpent.toString();
+      _descriptionController.text = widget.expense!.description!;
+      _platformController.text = widget.expense!.platformName!;
+      selectedCategory = ExpenseCategory.values
+          .firstWhere((element) => element.name == widget.expense!.category);
+    });
+  }
+
+  _updateExpense() async {
+    try {
+      if (_key.currentState?.validate() ?? false) {
+        if (widget.expense != null) {
+          editExpense = widget.expense!;
+          editExpense
+            ..title = _titleController.text.trim()
+            ..amountSpent = double.tryParse(_amountSpentController.text.trim())
+            ..description = _descriptionController.text.trim()
+            ..platformName = _platformController.text.trim()
+            ..category = selectedCategory.name;
+
+          context.read<ExpensesBloc>().add(
+                ExpensesUpdateEvent(
+                  newExpense: editExpense,
+                  oldExpense: widget.expense!,
+                ),
+              );
+        }
+        ColoredLog.yellow(editExpense, name: 'Updated Expense');
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      ColoredLog.red(e, name: 'Update expenses Error');
     }
   }
 }

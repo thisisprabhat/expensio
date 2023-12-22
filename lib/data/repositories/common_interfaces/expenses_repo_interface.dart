@@ -24,6 +24,10 @@ abstract class ExpensesRepository {
   /// It removes an expense form db
   Future<void> deleteExpense(Expenses expense);
 
+  /// It edits the selected expense from db
+  Future<void> editExpenses(
+      {required Expenses oldExpense, required Expenses newExpense});
+
   ///It fetches the list of expenses of selected categories
   Future<List<Expenses>> fetchCategoryExpenses(ExpenseCategory category);
 }

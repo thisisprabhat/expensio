@@ -33,6 +33,20 @@ class HiveExpensesRepository implements ExpensesRepository {
   }
 
   @override
+  Future<void> editExpenses(
+      {required Expenses oldExpense, required Expenses newExpense}) async {
+    try {
+      var box = Hive.box<Expenses>(ExpensesRepository.expensesCollection);
+      box.delete(oldExpense.id);
+      box.put(newExpense.id, newExpense);
+      ColoredLog.green(newExpense, name: "Expense edited");
+    } catch (e) {
+      ColoredLog.red(e, name: 'editExpense Error');
+      throw AppException(message: e.toString(), exceptionType: 'EditException');
+    }
+  }
+
+  @override
   Future<List<Expenses>> fetchCategoryExpenses(ExpenseCategory category) async {
     List<Expenses> expensesList = [];
     try {

@@ -13,7 +13,7 @@ class ViewExpensePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(expense.title ?? ''),
+        title: Text(expense.title ?? 'N/A'),
         centerTitle: true,
       ),
       body: ListView(
@@ -47,9 +47,10 @@ class ViewExpensePage extends StatelessWidget {
                 ),
               ),
               Text(
-                '₹${expense.amountSpent}',
+                '₹${expense.amountSpent ?? 'N/A'}',
                 style:
                     const TextStyle(fontSize: 46, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
               _infoTile("Spent On", expense.title),
               _infoTile("Description", expense.description),
@@ -76,10 +77,12 @@ class ViewExpensePage extends StatelessWidget {
           style: TextStyle(
             color: Colors.grey.withOpacity(0.5),
           ),
+          textAlign: TextAlign.center,
         ),
         Text(
-          info ?? 'N/A',
+          info == '' || info == null ? 'N/A' : info,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          textAlign: TextAlign.center,
         ),
       ],
     );

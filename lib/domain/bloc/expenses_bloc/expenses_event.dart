@@ -29,7 +29,8 @@ class ExpensesDeleteEvent extends ExpensesEvent {
 }
 
 class ExpensesUpdateEvent extends ExpensesEvent {
-  final Expenses expense;
+  final Expenses newExpense;
+  final Expenses oldExpense;
 
-  ExpensesUpdateEvent(this.expense);
+  ExpensesUpdateEvent({required this.newExpense, required this.oldExpense});
 }
