@@ -8,7 +8,7 @@ import '/data/models/expenses_model.dart';
 import '/presentation/screens/view_expenses/view_expense_page.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
-import '/presentation/screens/add_expense/add_expense.dart';
+import '/presentation/screens/add_or_edit_expense/add_or_edit_expense.dart';
 
 class ExpenseTile extends StatefulWidget {
   const ExpenseTile({super.key, required this.expense});

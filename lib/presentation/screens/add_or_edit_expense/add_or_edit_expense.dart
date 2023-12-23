@@ -11,7 +11,7 @@ import '/data/models/expenses_model.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
 import '/domain/exceptions/app_exception.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
-import '/presentation/screens/add_expense/components/category_chip.dart';
+import 'components/category_chip.dart';
 
 ///### Screen for adding or editting an expense
 /// - If no parameter is passed to the constructor, it will be in add mode

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/core/constants/styles.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
-import '/presentation/screens/add_expense/add_expense.dart';
+import '../add_or_edit_expense/add_or_edit_expense.dart';
 import '/presentation/screens/search/search_page.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
 import '/presentation/screens/homescreen/components/expense_tile.dart';

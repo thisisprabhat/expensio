@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '/core/constants/styles.dart';
 import '/domain/bloc/expenses_bloc/expenses_bloc.dart';
 import '/data/repositories/common_interfaces/expenses_repo_interface.dart';
-import '../../view_expenses/view_expenses_list.dart';
+import '/presentation/screens/view_expenses/view_expenses_list.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
